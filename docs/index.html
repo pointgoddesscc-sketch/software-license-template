@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Software License UI Demo – Pro Unlock Style</title>
+  <link rel="stylesheet" href="license-ui.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #f5f5f7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    p {
+      color: #a1a1a6;
+      max-width: 360px;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+    .demo-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 280px;
+    }
+    .demo-btn {
+      background: #30d158;
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .demo-btn.secondary {
+      background: #0a84ff;
+      color: #fff;
+    }
+    .badge {
+      display: inline-block;
+      background: #2c2c2e;
+      color: #a1a1a6;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>License UI Demo</h1>
+  <p>Professional software license agreement + Pro Unlock screen ready for your website or marketing pages.</p>
+
+  <div class="demo-buttons">
+    <button class="demo-btn" id="btn-agreement">Show License Agreement</button>
+    <button class="demo-btn secondary" id="btn-unlock">Show Unlock Pro Screen</button>
+  </div>
+
+  <div class="badge">Works great with Working Copy on iPhone</div>
+
+  <script src="license-ui.js"></script>
+  <script>
+    document.getElementById('btn-agreement').addEventListener('click', () => {
+      LicenseUI.showAgreement({
+        title: "Software License Agreement",
+        content: `<p>These terms and conditions create a contract between you and the Licensor (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”</p>
+        <h3>TABLE OF CONTENTS</h3>
+        <p>A. INTRODUCTION<br>B. PAYMENTS, TAXES, AND REFUNDS<br>C. ACCOUNT<br>D. PRIVACY<br>E. SERVICES AND CONTENT USAGE RULES<br>F. TERMINATION AND SUSPENSION<br>G. DOWNLOADS<br>H. SUBSCRIPTIONS / UNLOCKS</p>
+        <p><strong>Unlock Pro features</strong> are permanent for everything available at purchase time plus the next 12 months of new features.</p>`,
+        onAgree: () => {
+          alert('You agreed to the license. Proceed to unlock or checkout.');
+        },
+        onCancel: () => {
+          console.log('Cancelled');
+        }
+      });
+    });
+
+    document.getElementById('btn-unlock').addEventListener('click', () => {
+      LicenseUI.showUnlock({
+        title: "Unlock Pro Capabilities",
+        features: [
+          { name: "One-time trial unlock for 10 days\nno automatic purchase when done", price: null },
+          { name: "Unlock for all your devices\nunlocked features are permanent", price: "$35.99", permanent: true },
+          { name: "Restore previous purchase", price: "Free" }
+        ],
+        trialExpired: true,
+        onPurchase: () => {
+          alert('Redirecting to purchase / App Store style checkout…');
+        },
+        onRestore: () => {
+          alert('Restoring previous purchase…');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
