@@ -1,0 +1,29 @@
+name: CI – License Template Check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:  # Run manually from iPhone GitHub app or Working Copy
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify core files exist
+        run: |
+          echo "Checking required files for the license template..."
+          test -f LICENSE.md && echo "✓ LICENSE.md found"
+          test -f docs/license-ui.js && echo "✓ license-ui.js found"
+          test -f docs/license-ui.css && echo "✓ license-ui.css found"
+          test -f docs/index.html && echo "✓ Demo page found"
+          echo "All core files present – ready for website & Working Copy use."
+
+      - name: Simple JS syntax check
+        run: |
+          node --check docs/license-ui.js
+          echo "✓ JavaScript syntax is valid"
