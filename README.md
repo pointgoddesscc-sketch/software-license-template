@@ -11,7 +11,41 @@ Inspired by modern App Store style agreements and one-time Pro unlock experience
 - `LICENSE.md` – Full proprietary software license agreement template
 - `docs/license-ui.js` – Lightweight vanilla JavaScript module for license modals and unlock screens
 - `docs/license-ui.css` – Matching dark-mode friendly styles
-- Example usage for marketing sites and SaaS product pages
+- `docs/index.html` – Interactive live demo (License Agreement + Unlock Pro screen)
+- **GitHub Actions workflows** (visible in the Workflows tab on iPhone)
+
+## GitHub Actions Workflows (now live)
+
+Two workflows are added so the **Workflows** tab is no longer empty:
+
+1. **CI – License Template Check** (`.github/workflows/ci.yml`)
+   - Validates that all core files exist
+   - Checks JavaScript syntax
+   - Runs on every push + can be triggered manually from iPhone
+
+2. **Deploy License UI Demo to GitHub Pages** (`.github/workflows/pages.yml`)
+   - Deploys the interactive demo to GitHub Pages
+   - Manual trigger available (`workflow_dispatch`) so you can run it from the GitHub mobile app or Working Copy on iPhone
+
+### How to enable the live demo
+1. Go to the repository **Settings → Pages**
+2. Under “Build and deployment” choose **Source: GitHub Actions**
+3. The next push (or manual run) will publish the demo.
+
+After that the demo will be available at:  
+`https://pointgoddesscc-sketch.github.io/software-license-template/`
+
+## Using with Working Copy on iPhone (App Store)
+
+This repository is fully compatible with **Working Copy** (the Git client from the App Store):
+
+1. Open Working Copy on your iPhone
+2. Clone this repo (`pointgoddesscc-sketch/software-license-template`)
+3. You can edit the license text, JS, or CSS directly on device
+4. Push changes – the CI workflow will run automatically
+5. From the GitHub mobile app you can also manually trigger the workflows from the **Workflows** tab
+
+The unlock-style demo page works great when previewed on iPhone.
 
 ## Quick Start for Website Developers
 
@@ -67,6 +101,7 @@ LicenseUI.showUnlock({
 - Converts better with a polished unlock experience similar to successful apps
 - Easy to brand and integrate into any JavaScript website or React/Vue project
 - Ready for App Store style compliance messaging
+- Fully usable from iPhone via Working Copy + GitHub mobile
 
 ## Customization Tips
 
